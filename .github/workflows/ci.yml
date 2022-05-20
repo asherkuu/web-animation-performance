@@ -6,9 +6,6 @@ name: ci
 # events but only for the dev branch
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - "**"
@@ -28,6 +25,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
+            Action: Pull Request
             Author: ${{github.actor}}
 
             Status: 😚 **Success**
@@ -37,3 +35,7 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
 
             [See changes](https://github.com/${{ github.repository }}/commit/${{github.sha}})
+
+# Commit message: ${{ github.event.commits[0].message }}
+
+# [See changes](https://github.com/${{ github.repository }}/commit/${{github.sha}})
