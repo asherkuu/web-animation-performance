@@ -21,13 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Node 16 버전을 사용합니다.
-      # - name: Install node
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '16'
-      #     cache: 'yarn'
-
       - name: Pull Request
         uses: appleboy/telegram-action@master
         with:
@@ -38,6 +31,8 @@ jobs:
             Author: ${{github.actor}}
 
             Status: 😚 **Success**
+
+            [See Pull Request](https://github.com/${{ github.repository }}/pull/${{github.pnum}})
 
             Commit message: ${{ github.event.commits[0].message }}
 
