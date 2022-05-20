@@ -1,13 +1,17 @@
 name: main
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Github-Action
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
 
-      - name: Update status
+      - name: Pull Request
         uses: asherkuu/web-animation-performance@main
         with:
           to: ${{ secrets.TELEGRAM_ID }}
