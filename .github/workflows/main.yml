@@ -1,4 +1,4 @@
-name: tg-notify
+name: main
 on: [push, pull_request]
 jobs:
   build:
