@@ -4,19 +4,14 @@ name: ci
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the dev branch
-# on:
-#   push:
-#     branches:
-#       - master
-#   pull_request:
-#     branches:
-#       - "*"
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - "**"
 
 jobs:
   build:
@@ -33,7 +28,7 @@ jobs:
       #     node-version: '16'
       #     cache: 'yarn'
 
-      - name: Run a one-line script
+      - name: Pull Request
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_ID }}
@@ -47,12 +42,3 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
 
             [See changes](https://github.com/${{ github.repository }}/commit/${{github.sha}})
-
-      # - name: Pull Request
-      #   uses: asherkuu/web-animation-performance@main
-      #   with:
-      #     to: ${{ secrets.TELEGRAM_ID }}
-      #     token: ${{ secrets.TELEGRAM_TOKEN }}
-      #     message:
-      #       | #https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#github-context
-      #       TT : ${{ github.event_name }} commit in ${{ github.repository }} by "${{ github.actor }}". [${{github.sha}}@${{ github.ref }}]
