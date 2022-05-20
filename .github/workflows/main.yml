@@ -4,6 +4,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Github-Action
+        uses: uses: actions/checkout@v2
+
       - name: Update status
         uses: asherkuu/web-animation-performance@main
         with:
