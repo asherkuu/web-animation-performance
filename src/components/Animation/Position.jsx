@@ -5,6 +5,7 @@ const Position = () => {
   return (
     <article>
       <h1>Animate with Top/Left</h1>
+
       <div className={styles.animate_position}></div>
     </article>
   );
