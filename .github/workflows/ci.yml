@@ -27,10 +27,7 @@ jobs:
 
             Status: 😚 **Success**
 
-
-            ${{github.event}}
-
-            [See Pull Request](https://github.com/${{ github.repository }}/pull/${{github.pnum}})
+            [See Pull Request](https://github.com/${{ github.repository }}/pull/${{github.event.number}})
 
             Commit message: ${{ github.event.commits[0].message }}
 
