@@ -1,20 +1,24 @@
 name: ci
 
 on:
+	push:
+    branches:
+      - master
   pull_request:
     branches:
-      - "**"
+      - "**" # 모든 브랜치를 의미 ( 특정 브랜치 > - [ develop, main, ... ] 등등 )
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+			# 해당 저장소의 코드를 가져옵니다.
       - name: Checkout
         uses: actions/checkout@v2
 
+			# 풀 리퀘스트 또는 다른 Actions 성공 메세지 발송
       - name: Send Pull Request Success Message
-        uses: appleboy/telegram-action@master 
-				if: success()
+        uses: appleboy/telegram-action@master # 필수 고정값
         with:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -24,8 +28,6 @@ jobs:
             Author: ${{github.actor}}
 
             Status: 😚 **Success**
-
-            ${{github.event}}
 
             [See Pull Request](https://github.com/${{ github.repository }}/pull/${{github.pnum}})
 
