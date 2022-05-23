@@ -1,14 +1,6 @@
-# This is a basic workflow to help you get started with Actions
-
 name: ci
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the dev branch
-
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - "**"
@@ -17,22 +9,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 해당 저장소의 코드를 가져옵니다.
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Pull Request
+      - name: Send Pull Request Success Message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
+            Action: Pull Request
             Author: ${{github.actor}}
 
             Status: 😚 **Success**
 
-            [See Pull Request](https://github.com/${{ github.repository }}/pull/${{github.pnum}})
+            [See Pull Request](https://github.com/${{ github.repository }}/pull/${{github.event.number}})
 
             Commit message: ${{ github.event.commits[0].message }}
 
